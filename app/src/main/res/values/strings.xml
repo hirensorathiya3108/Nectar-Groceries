@@ -1,0 +1,61 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">NectarGroceries</string>
+    <!--    splash screen -->
+    <string name="nectar">nectar</string>
+    <string name="online_groceries">online groceries</string>
+    <string name="green_color_create">&lt;font color=\"#53B175\"&gt;%s&lt;/font&gt;</string>
+
+    <!--    welcome screen  -->
+    <string name="welcome_start">Welcome to \n our store</string>
+    <string name="welcome_sub_desc">Ger your groceries in as fast as one hour</string>
+    <string name="get_started">Get Started</string>
+
+    <!--    login screen-->
+    <string name="login">Login</string>
+    <string name="enter_email_and_password">Enter your email and password</string>
+    <string name="enter_email">Enter your email id here</string>
+    <string name="enter_password">Enter your password here</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="login_in">Login In</string>
+    <string name="do_not_create_account">Don\'t have and account?</string>
+    <string name="Signup">Signup</string>
+    <string name="sign_up_title">Sign Up</string>
+    <string name="enter_your_credentials">Enter your credentials to continue</string>
+    <string name="username">Username</string>
+    <string name="enter_username">Enter your Username here</string>
+    <string name="please_enter_username">Please Enter yor Username</string>
+    <string name="please_enter_email">Please Enter yor email</string>
+    <string name="email_is_invalid">Email is invalid</string>
+    <string name="please_enter_password">Please Enter yor password</string>
+    <string name="confirm_password_is_not_match">Confirm password is not match</string>
+    <string name="password_length_invalid">Password length is inValid</string>
+    <string name="please_enter_confirm_password">Please Enter yor confirm password</string>
+    <string name="term_of_service">Term of Service</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="term_condition">By continuing you agree to our %s and %s</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="next">Next</string>
+
+    <!--    payment info screen -->
+    <string name="payment_info_title">Payment Details</string>
+    <string name="payment_info_desc">The card details and you are good to…</string>
+    <string name="name_of_card">Name on the card:</string>
+    <string name="enter_card_name">Enter your card name here</string>
+    <string name="please_enter_card_name">Please enter your card name</string>
+    <string name="please_enter_card_number">Please enter your card number</string>
+    <string name="please_enter_card_expiry_date">Please enter your card expiry date</string>
+    <string name="expiry_date_format_invalid">Expiry date format invalid</string>
+    <string name="security_code_invalid">Security code invalid</string>
+    <string name="please_enter_card_security_code">Please enter your card security code</string>
+    <string name="enter_card_number">Enter your card number here</string>
+    <string name="enter_card_security_code">000</string>
+    <string name="expiry_date_format">00/000</string>
+    <string name="card_number">Card number:</string>
+    <string name="expiry_date">Expiry date:</string>
+    <string name="security_code">Security code:</string>
+
+
+</resources>

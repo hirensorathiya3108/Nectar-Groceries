@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/payment_bg_color"
+        tools:context=".ui.activity.PaymentInfoActivity">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivTopBg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_payment_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivBack"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_round_arrow_back"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llPaymentTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/ivTopBg"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintVertical_bias="0.9">
+
+            <com.kotlin.program.nectargroceries.view.BoldTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="@string/payment_info_title"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_19ssp" />
+
+            <com.kotlin.program.nectargroceries.view.BoldTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:includeFontPadding="false"
+                android:text="@string/payment_info_desc"
+                android:textColor="@color/sub_desc_text_color"
+                android:textSize="@dimen/_11ssp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llCardName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/llPaymentTitle">
+
+            <com.kotlin.program.nectargroceries.view.BoldTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="@string/name_of_card"
+                android:textColor="@color/sub_desc_text_color"
+                android:textSize="@dimen/_14ssp" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtCardName"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:elevation="@dimen/_4sdp"
+                android:background="@drawable/edt_text_bg"
+                android:fontFamily="@font/pangram_regular"
+                android:hint="@string/enter_card_name"
+                android:includeFontPadding="false"
+                android:paddingStart="@dimen/_4sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11ssp"
+                tools:ignore="RtlSymmetry" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llCardNumber"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/llCardName">
+
+            <com.kotlin.program.nectargroceries.view.BoldTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="@string/card_number"
+                android:textColor="@color/sub_desc_text_color"
+                android:textSize="@dimen/_14ssp" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtCardNumber"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:elevation="@dimen/_4sdp"
+                android:background="@drawable/edt_text_bg"
+                android:fontFamily="@font/pangram_regular"
+                android:hint="@string/enter_card_number"
+                android:maxLength="4"
+                android:includeFontPadding="false"
+                android:paddingStart="@dimen/_4sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11ssp"
+                tools:ignore="RtlSymmetry" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llCardDetails"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@+id/llCardNumber"
+            app:layout_constraintStart_toStartOf="@+id/llCardNumber"
+            app:layout_constraintTop_toBottomOf="@+id/llCardNumber">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <com.kotlin.program.nectargroceries.view.BoldTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:text="@string/expiry_date"
+                    android:textColor="@color/sub_desc_text_color"
+                    android:textSize="@dimen/_14ssp" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtExpiryDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:elevation="@dimen/_4sdp"
+                    android:background="@drawable/edt_text_bg"
+                    android:fontFamily="@font/pangram_regular"
+                    android:hint="@string/expiry_date_format"
+                    android:includeFontPadding="false"
+                    android:paddingStart="@dimen/_4sdp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11ssp"
+                    tools:ignore="RtlSymmetry" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_height="wrap_content">
+
+                <com.kotlin.program.nectargroceries.view.BoldTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:text="@string/security_code"
+                    android:textColor="@color/sub_desc_text_color"
+                    android:textSize="@dimen/_14ssp" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtSecurityCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:elevation="@dimen/_4sdp"
+                    android:background="@drawable/edt_text_bg"
+                    android:fontFamily="@font/pangram_regular"
+                    android:maxLength="3"
+                    android:hint="@string/enter_card_security_code"
+                    android:includeFontPadding="false"
+                    android:paddingStart="@dimen/_4sdp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11ssp"
+                    tools:ignore="RtlSymmetry" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_28sdp"
+            android:layout_marginTop="@dimen/_25sdp"
+            android:background="@drawable/start_btn_bg"
+            android:fontFamily="@font/pangram_bold"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:padding="@dimen/_6sdp"
+            android:text="@string/Signup"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textDirection="ltr"
+            android:textSize="@dimen/_14ssp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/llCardDetails"
+            tools:ignore="UnusedAttribute" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
