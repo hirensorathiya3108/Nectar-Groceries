@@ -72,5 +72,8 @@ class SplashScreenActivity : ParentActivity() {
         if (appPreference.getPreference(AppPersistence.keys.CONFIRM_PASSWORD) == null){
             appPreference.setPreference(AppPersistence.keys.CONFIRM_PASSWORD,"")
         }
+        if (appPreference.getPreference(AppPersistence.keys.USER_INFO_DATA) == null){
+            appPreference.setPreference(AppPersistence.keys.USER_INFO_DATA,"")
+        }
     }
 }

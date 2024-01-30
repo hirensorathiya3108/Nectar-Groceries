@@ -52,7 +52,7 @@
     <string name="please_enter_card_security_code">Please enter your card security code</string>
     <string name="enter_card_number">Enter your card number here</string>
     <string name="enter_card_security_code">000</string>
-    <string name="expiry_date_format">00/000</string>
+    <string name="expiry_date_format">00/00</string>
     <string name="card_number">Card number:</string>
     <string name="expiry_date">Expiry date:</string>
     <string name="security_code">Security code:</string>

@@ -11,7 +11,7 @@ class AppPersistence(context: Context1) {
     private val KEY = "Video_Player_prefs"
 
     enum class keys {
-        IS_INTRO_SHOW,USERNAME,EMAIL,PASSWORD,CONFIRM_PASSWORD,
+        IS_INTRO_SHOW,USERNAME,EMAIL,PASSWORD,CONFIRM_PASSWORD,USER_INFO_DATA,IS_LOGIN
     }
 
     private var sharedPreferences: SharedPreferences? = null

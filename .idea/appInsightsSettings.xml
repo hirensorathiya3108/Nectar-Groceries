@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.nectar.groceries.nectargroceries" />
+                  <option name="mobileSdkAppId" value="1:14484862123:android:b54674991056b9ed0e33ee" />
+                  <option name="projectId" value="nectargroceries-bab35" />
+                  <option name="projectNumber" value="14484862123" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
