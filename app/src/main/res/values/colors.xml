@@ -8,4 +8,5 @@
     <color name="payment_bg_color">#CCFCFCFC</color>
     <color name="sub_text_color">#B3FCFCFC</color>
     <color name="sub_desc_text_color">#7C7C7C</color>
+    <color name="trans_secondary_20">#33000000</color>
 </resources>

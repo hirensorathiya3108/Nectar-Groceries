@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "14484862123",
+    "project_id": "nectargroceries-bab35",
+    "storage_bucket": "nectargroceries-bab35.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:14484862123:android:b54674991056b9ed0e33ee",
+        "android_client_info": {
+          "package_name": "com.nectar.groceries.nectargroceries"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKJb46mlzfe93PRhhNenM3TpWUtPymZZM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

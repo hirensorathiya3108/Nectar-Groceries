@@ -53,7 +53,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivCarrot">
 
-            <com.kotlin.program.nectargroceries.view.BoldTextView
+            <com.nectar.groceries.nectargroceries.view.BoldTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:includeFontPadding="false"
@@ -61,7 +61,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/_19ssp" />
 
-            <com.kotlin.program.nectargroceries.view.SimpleTextview
+            <com.nectar.groceries.nectargroceries.view.SimpleTextview
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8sdp"
@@ -83,7 +83,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/llLoginTitle">
 
-            <com.kotlin.program.nectargroceries.view.BoldTextView
+            <com.nectar.groceries.nectargroceries.view.BoldTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:includeFontPadding="false"
@@ -115,7 +115,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/llEmail">
 
-            <com.kotlin.program.nectargroceries.view.BoldTextView
+            <com.nectar.groceries.nectargroceries.view.BoldTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:includeFontPadding="false"
@@ -154,7 +154,7 @@
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <com.kotlin.program.nectargroceries.view.BoldTextView
+        <com.nectar.groceries.nectargroceries.view.BoldTextView
             android:id="@+id/tvForgotPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -198,7 +198,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnLogin">
 
-            <com.kotlin.program.nectargroceries.view.SimpleTextview
+            <com.nectar.groceries.nectargroceries.view.SimpleTextview
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:includeFontPadding="false"
@@ -206,7 +206,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/_14ssp" />
 
-            <com.kotlin.program.nectargroceries.view.BoldTextView
+            <com.nectar.groceries.nectargroceries.view.BoldTextView
                 android:id="@+id/tvSingUp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

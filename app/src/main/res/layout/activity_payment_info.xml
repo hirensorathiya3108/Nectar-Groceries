@@ -46,7 +46,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintVertical_bias="0.9">
 
-            <com.kotlin.program.nectargroceries.view.BoldTextView
+            <com.nectar.groceries.nectargroceries.view.BoldTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:includeFontPadding="false"
@@ -54,7 +54,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/_19ssp" />
 
-            <com.kotlin.program.nectargroceries.view.BoldTextView
+            <com.nectar.groceries.nectargroceries.view.BoldTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8sdp"
@@ -76,7 +76,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/llPaymentTitle">
 
-            <com.kotlin.program.nectargroceries.view.BoldTextView
+            <com.nectar.groceries.nectargroceries.view.BoldTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:includeFontPadding="false"
@@ -112,7 +112,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/llCardName">
 
-            <com.kotlin.program.nectargroceries.view.BoldTextView
+            <com.nectar.groceries.nectargroceries.view.BoldTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:includeFontPadding="false"
@@ -154,7 +154,7 @@
                 android:orientation="vertical"
                 android:layout_height="wrap_content">
 
-                <com.kotlin.program.nectargroceries.view.BoldTextView
+                <com.nectar.groceries.nectargroceries.view.BoldTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:includeFontPadding="false"
@@ -186,7 +186,7 @@
                 android:layout_marginStart="@dimen/_8sdp"
                 android:layout_height="wrap_content">
 
-                <com.kotlin.program.nectargroceries.view.BoldTextView
+                <com.nectar.groceries.nectargroceries.view.BoldTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:includeFontPadding="false"
@@ -213,6 +213,38 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clProgress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_28sdp"
+            android:layout_marginTop="@dimen/_25sdp"
+            android:layout_marginBottom="@dimen/_30sdp"
+            android:background="@color/trans_secondary_20"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/llCardDetails">
+
+            <ProgressBar
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/_6sdp"
+                android:indeterminate="true"
+                android:theme="@style/ProgressBarSecondryTheme"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSignUp"

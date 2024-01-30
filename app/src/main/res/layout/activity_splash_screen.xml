@@ -37,7 +37,7 @@
                 android:layout_marginStart="@dimen/_8sdp"
                 android:orientation="vertical">
 
-                <com.kotlin.program.nectargroceries.view.BoldTextView
+                <com.nectar.groceries.nectargroceries.view.BoldTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
@@ -48,7 +48,7 @@
                     android:textSize="@dimen/_36ssp"
                     android:includeFontPadding="false"/>
 
-                <com.kotlin.program.nectargroceries.view.SimpleTextview
+                <com.nectar.groceries.nectargroceries.view.SimpleTextview
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"

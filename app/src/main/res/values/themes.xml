@@ -1,9 +1,16 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.NectarGroceries" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.NectarGroceries" parent="Theme.Material3.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
     <style name="Theme.NectarGroceries" parent="Base.Theme.NectarGroceries" />
+
+    <style name="ProgressBarSecondryTheme" parent="@style/ThemeOverlay.AppCompat.Light">
+        <item name="colorAccent">@color/themeColor</item>
+        <!--        old-->
+        <!--        <item name="colorAccent">@color/almost_black</item>-->
+    </style>
+
 </resources>
