@@ -14,4 +14,18 @@ class FirebaseDB {
         return FirebaseFirestore.getInstance().collection("users")
             .document(currentUser!!.uid).collection("General")
     }
+
+    fun getCollectionReferenceForBestSelling(): CollectionReference{
+        return FirebaseFirestore.getInstance().collection("products")
+            .document("bestselling").collection("best_product")
+    }
+    fun getCollectionReferenceForExclusiveOffer(): CollectionReference{
+        return FirebaseFirestore.getInstance().collection("products")
+            .document("exclusive_offer").collection("exclusive_product")
+    }
+
+    fun getCollectionReferenceForOffer(): CollectionReference{
+        return FirebaseFirestore.getInstance().collection("products")
+            .document("offer").collection("offer_product")
+    }
 }

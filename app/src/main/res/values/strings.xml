@@ -59,8 +59,22 @@
     <string name="shop">Shop</string>
     <string name="cart">Cart</string>
     <string name="account">Account</string>
+
+    <!--    shop screen-->
+    <string name="exclusive_offer">Exclusive offer</string>
+    <string name="best_selling">BestSelling</string>
+
+    <!--    item_product-->
+    <string name="product_title">Apple</string>
+    <string name="product_sub_desc">1Kg,price</string>
+    <string name="product_quantity">4,Pcs</string>
+    <string name="product_weight">1Kg</string>
+    <string name="product_price">$4.96</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="loading">Loading…</string>
+    <string name="there_s_nothing_here">There\'s nothing here.</string>
 
 
 </resources>

@@ -68,4 +68,13 @@ dependencies {
 
     //Work code in Background Thread
     implementation("com.zsoltsafrany:needle:1.0.0")
+
+    //for glide
+    implementation("com.github.bumptech.glide:glide:4.15.1")
+
+
+    //lottie
+    implementation("com.airbnb.android:lottie:3.4.0")
+
+
 }

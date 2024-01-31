@@ -35,9 +35,9 @@ class MainActivity : ParentActivity() {
 
     private fun intiViews() {
         appPreference = AppPreference(activity)
-        profileData = appPreference.getProfileDetails()!!
+//        profileData = appPreference.getProfileDetails()!!
         setFragment()
-        Log.e("intiViews: ","profileData => $profileData")
+//        Log.e("intiViews: ","profileData => $profileData")
 
         // TODO: set color in bottom view
         val iconColorStates = createColorStateList(ContextCompat.getColor(activity,R.color.themeColor),ContextCompat.getColor(activity,R.color.black))
@@ -45,10 +45,6 @@ class MainActivity : ParentActivity() {
 
         binding.bottomNav.itemIconTintList = iconColorStates
         binding.bottomNav.itemTextColor = textColorStates
-
-        binding.tvLogin.setOnClickListener {
-            startActivity(Intent(activity,LoginActivity::class.java))
-        }
     }
 
     private fun setFragment() {
