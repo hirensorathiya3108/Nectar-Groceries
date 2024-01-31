@@ -18,7 +18,7 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.gson.Gson
 import com.nectar.groceries.nectargroceries.R
-import com.nectar.groceries.nectargroceries.data.model.ProfileData
+import com.nectar.groceries.nectargroceries.data.model.user.ProfileData
 import com.nectar.groceries.nectargroceries.data.preference.AppPersistence
 import com.nectar.groceries.nectargroceries.data.preference.AppPreference
 import com.nectar.groceries.nectargroceries.database.FirebaseDB

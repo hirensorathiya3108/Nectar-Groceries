@@ -1,4 +1,4 @@
-package com.nectar.groceries.nectargroceries.data.model
+package com.nectar.groceries.nectargroceries.data.model.user
 
 data class PaymentData(
     val card_name:String = "",

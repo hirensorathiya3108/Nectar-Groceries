@@ -3,7 +3,7 @@ package com.nectar.groceries.nectargroceries.data.preference
 import android.content.Context
 import com.google.gson.Gson
 import com.nectar.groceries.nectargroceries.MyApplication
-import com.nectar.groceries.nectargroceries.data.model.ProfileData
+import com.nectar.groceries.nectargroceries.data.model.user.ProfileData
 
 class AppPreference(context: Context?) {
 

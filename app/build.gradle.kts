@@ -65,4 +65,7 @@ dependencies {
 
     //gson
     implementation("com.google.code.gson:gson:2.10.1")
+
+    //Work code in Background Thread
+    implementation("com.zsoltsafrany:needle:1.0.0")
 }

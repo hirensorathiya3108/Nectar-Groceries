@@ -56,6 +56,11 @@
     <string name="card_number">Card number:</string>
     <string name="expiry_date">Expiry date:</string>
     <string name="security_code">Security code:</string>
+    <string name="shop">Shop</string>
+    <string name="cart">Cart</string>
+    <string name="account">Account</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

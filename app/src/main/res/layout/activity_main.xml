@@ -10,6 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         tools:context=".ui.activity.MainActivity">
 
         <Button
@@ -22,21 +23,30 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!--<com.google.android.material.bottomnavigation.BottomNavigationView
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vpFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNav"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNav"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_55sdp"
             android:fitsSystemWindows="true"
             android:theme="@style/BottomNavigationMenuTextStyle"
             android:visibility="visible"
-            app:itemTextColor="@color/dayTextColor"
+            app:itemTextColor="@color/black"
             app:labelVisibilityMode="labeled"
             app:itemBackground="@null"
             app:itemActiveIndicatorStyle="@null"
             app:menu="@menu/bottom_nav"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>-->
+            app:layout_constraintStart_toStartOf="parent"/>
 
 
 

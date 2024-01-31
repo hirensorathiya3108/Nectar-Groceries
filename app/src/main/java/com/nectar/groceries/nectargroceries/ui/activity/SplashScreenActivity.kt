@@ -60,6 +60,9 @@ class SplashScreenActivity : ParentActivity() {
         if (appPreference.getPreference(AppPersistence.keys.IS_INTRO_SHOW) == null){
             appPreference.setPreference(AppPersistence.keys.IS_INTRO_SHOW,false)
         }
+        if (appPreference.getPreference(AppPersistence.keys.IS_LOGIN) == null){
+            appPreference.setPreference(AppPersistence.keys.IS_LOGIN,false)
+        }
         if (appPreference.getPreference(AppPersistence.keys.USERNAME) == null){
             appPreference.setPreference(AppPersistence.keys.USERNAME,"")
         }

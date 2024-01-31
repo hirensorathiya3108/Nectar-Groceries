@@ -13,4 +13,9 @@
         <!--        <item name="colorAccent">@color/almost_black</item>-->
     </style>
 
+    /for BottomNavigationView
+    <style name="BottomNavigationMenuTextStyle">
+        <item name="android:fontFamily">@font/pangram_regular</item>
+    </style>
+
 </resources>
