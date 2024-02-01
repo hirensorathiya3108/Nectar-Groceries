@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/orderConfirmRoot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rectangle_bottom_dialog">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivTopBg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_top_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivOrderConfirm"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_200sdp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_order_confirm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivTopBg" />
+
+        <com.nectar.groceries.nectargroceries.view.BoldTextView
+            android:id="@+id/tvOrderAccept"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:includeFontPadding="false"
+            android:text="@string/order_accept_message"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_19ssp"
+            android:layout_marginTop="@dimen/_20sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivOrderConfirm" />
+
+        <com.nectar.groceries.nectargroceries.view.SimpleTextview
+            android:id="@+id/tvSubOrderDesc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:includeFontPadding="false"
+            android:text="@string/order_accept_sub_message"
+            android:textAlignment="center"
+            android:textColor="@color/sub_desc_text_color"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvOrderAccept" />
+
+        <com.nectar.groceries.nectargroceries.view.SimpleButton
+            android:id="@+id/continueBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_28sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:background="@drawable/start_btn_bg"
+            android:fontFamily="@font/pangram_bold"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:padding="@dimen/_6sdp"
+            android:text="@string/done"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textDirection="ltr"
+            android:textSize="@dimen/_14ssp"
+            android:textStyle="bold"
+            tools:ignore="UnusedAttribute"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvSubOrderDesc" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,12 +1,12 @@
 package com.nectar.groceries.nectargroceries.ui.fragment
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.GridLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.databinding.DataBindingUtil
@@ -23,25 +23,23 @@ import com.nectar.groceries.nectargroceries.extensions.beVisible
 import com.nectar.groceries.nectargroceries.ui.adapter.BestSellingProductAdapter
 import com.nectar.groceries.nectargroceries.ui.adapter.ExclusiveProductAdapter
 import com.nectar.groceries.nectargroceries.ui.adapter.ImageAdapter
+import com.nectar.groceries.nectargroceries.view.AdaptiveSpacingItemDecoration
 import needle.Needle
 import needle.UiRelatedTask
-import java.util.UUID
+import android.provider.Settings
+import com.nectar.groceries.nectargroceries.data.model.products.CartProductsData
+import com.nectar.groceries.nectargroceries.data.preference.AppPersistence
+import com.nectar.groceries.nectargroceries.data.preference.AppPreference
+import com.nectar.groceries.nectargroceries.utils.Utils
 
 
 class ShopFragment : ParentFragment() {
     private lateinit var binding: FragmentShopBinding
     private lateinit var activity: Activity
+    private lateinit var appPreference: AppPreference
     private lateinit var exclusiveProductList: ArrayList<Products>
     private lateinit var bestSellingProductList: ArrayList<Products>
     private lateinit var offerImageList: ArrayList<ProductOffer>
-    private lateinit var pageChangeListener: ViewPager2.OnPageChangeCallback
-
-    private val params = LinearLayout.LayoutParams(
-        LinearLayout.LayoutParams.WRAP_CONTENT,
-        LinearLayout.LayoutParams.WRAP_CONTENT
-    ).apply {
-        setMargins(20, 0, 20, 0)
-    }
 
     companion object {
         fun newInstance(title: String): ShopFragment {
@@ -65,12 +63,21 @@ class ShopFragment : ParentFragment() {
     }
 
     private fun initViews() {
+        appPreference = AppPreference(activity)
         exclusiveProductList = ArrayList()
         bestSellingProductList = ArrayList()
         offerImageList = ArrayList()
-        /*val documentReference = FirebaseDB().getCollectionReferenceForBestSelling()
+//        sendProductInFirebaseDataBase()
+        getOfferDataList()
+        getExclusiveOffer()
+        getBestSelling()
 
-        val itemList = arrayListOf(
+    }
+
+    private fun sendProductInFirebaseDataBase() {
+        val documentReference = FirebaseDB().getCollectionReferenceForBestSelling()
+
+        /*val itemList = arrayListOf(
             Pair(
                 "product_1", Products(
                     "https://firebasestorage.googleapis.com/v0/b/nectargroceries-bab35.appspot.com/o/product_image%2Fexclusive_offer%2Fic_apple.png?alt=media&token=0d56c645-3129-4038-b1e7-6d31346f69fc",
@@ -133,69 +140,45 @@ class ShopFragment : ParentFragment() {
                     Log.e("Firestore", "Error uploading item with custom ID $customId", e)
                 }
         }*/
-        getExclusiveOffer()
-        getBestSelling()
-
-        getOfferData()
     }
 
-    private fun getOfferData() {
-        /*val itemList = arrayListOf(
-            Pair(
-                "offer_1", ProductOffer(
-                    "offer-1",
-                    "https://firebasestorage.googleapis.com/v0/b/nectargroceries-bab35.appspot.com/o/product_image%2Foffer%2Fbanner.png?alt=media&token=54f1f013-5f5e-4679-a4cc-50d70a7f380a"
-                )
-            ), Pair(
-                "offer_2",
-                ProductOffer(
-                    "offer-2",
-                    "https://firebasestorage.googleapis.com/v0/b/nectargroceries-bab35.appspot.com/o/product_image%2Foffer%2Fbackery.png?alt=media&token=d6a77e97-0be2-49cb-a11e-e56e185d205c"
-                )
-            )
-        )
-
+    @SuppressLint("SuspiciousIndentation")
+    private fun getOfferDataList() {
         val documentReference = FirebaseDB().getCollectionReferenceForOffer()
-        for ((customId, item) in itemList) {
-            documentReference.document(customId)
-                .set(item)
-                .addOnSuccessListener {
-                    // Data uploaded successfully
-                    // You can add any success handling logic here
-                }
-                .addOnFailureListener { e ->
-                    // Handle the failure
-                    Log.e("Firestore", "Error uploading item with custom ID $customId", e)
-                }
-        }*/
-
-        val documentReference = FirebaseDB().getCollectionReferenceForOffer()
-
         documentReference.addSnapshotListener { value, error ->
             val data = value?.toObjects(ProductOffer::class.java)
-//            Needle.onBackgroundThread().execute(object : UiRelatedTask<Void?>() {
-//                override fun doWork(): Void? {
-                    if (data != null) offerImageList.addAll(data)
-                    Log.e("doWork: ", "exclusiveProductList => $exclusiveProductList")
-//                    return null
-//                }
-//
-//                override fun thenDoUiRelatedWork(result: Void?) {
+            Needle.onBackgroundThread().execute(object : UiRelatedTask<Void?>() {
+                override fun doWork(): Void? {
+                    offerImageList.addAll(data!!)
+                    return null
+                }
 
-//                }
-//            })
-        }
-        if (offerImageList.size != 0) {
-            setSliderView()
+                override fun thenDoUiRelatedWork(result: Void?) {
+                    if (offerImageList.size != 0) {
+                        setSliderView()
+                    }
+                }
+            })
         }
     }
 
     private fun setSliderView() {
+        Log.e("thenDoUiRelatedWork: ", "runSetSlider => Enter")
         val imageAdapter = ImageAdapter()
         imageAdapter.submitList(offerImageList)
-        binding.viewPager.adapter = imageAdapter
+        binding.vpSlider.adapter = imageAdapter
+        binding.vpSlider.offscreenPageLimit = ViewPager2.OFFSCREEN_PAGE_LIMIT_DEFAULT
 
         val dotsImage = Array(offerImageList.size) { ImageView(activity) }
+        val params = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        ).apply {
+//            setMargins(activity.resources.getDimension(R.dimen.indicator_item_spacing).toInt(), 0, activity.resources.getDimension(R.dimen.indicator_item_spacing).toInt(), 0)
+            rightMargin = activity.resources.getDimension(R.dimen.indicator_item_spacing).toInt()
+            leftMargin = activity.resources.getDimension(R.dimen.indicator_item_spacing).toInt()
+        }
+
         dotsImage.forEach {
             it.setImageResource(
                 R.drawable.non_active_dot
@@ -205,7 +188,7 @@ class ShopFragment : ParentFragment() {
         // default first dot selected
         dotsImage[0].setImageResource(R.drawable.active_dot)
 
-        pageChangeListener = object : ViewPager2.OnPageChangeCallback() {
+        binding.vpSlider.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 dotsImage.mapIndexed { index, imageView ->
                     if (position == index) {
@@ -218,16 +201,14 @@ class ShopFragment : ParentFragment() {
                 }
                 super.onPageSelected(position)
             }
-        }
-
-        binding.viewPager.registerOnPageChangeCallback(pageChangeListener)
+        })
 
         // Optional: Auto-scroll the ViewPager
         startAutoSlide(offerImageList)
     }
 
     private fun startAutoSlide(imageList: ArrayList<ProductOffer>) {
-        val viewPager = binding.viewPager
+        val viewPager = binding.vpSlider
         val handler = android.os.Handler()
         val runnable = object : Runnable {
             override fun run() {
@@ -236,13 +217,17 @@ class ShopFragment : ParentFragment() {
                 } else {
                     viewPager.currentItem = viewPager.currentItem + 1
                 }
-                handler.postDelayed(this, 3000) // Change slide interval here (in milliseconds)
+                handler.postDelayed(
+                    this,
+                    3000
+                ) // Change slide interval here (in milliseconds)
             }
         }
         handler.postDelayed(runnable, 3000) // Change initial delay here (in milliseconds)
     }
 
     private fun getExclusiveOffer() {
+        exclusiveProductList.clear()
         val documentReference = FirebaseDB().getCollectionReferenceForExclusiveOffer()
         documentReference.addSnapshotListener { value, error ->
             val data = value?.toObjects(Products::class.java)
@@ -265,13 +250,23 @@ class ShopFragment : ParentFragment() {
     }
 
     private fun setExclusiveAdapter() {
-        val exclusiveProductAdapter = ExclusiveProductAdapter(activity, exclusiveProductList,
-            object : ExclusiveProductAdapter.OnItemClickListener {
-                override fun onClicked(position: Int) {
-                }
-            })
+        val exclusiveProductAdapter =
+            ExclusiveProductAdapter(activity, exclusiveProductList,
+                object : ExclusiveProductAdapter.OnItemClickListener {
+                    override fun onClicked(position: Int) {
+                        val item = exclusiveProductList[position]
+                        addProductInBasket(item)
+                    }
+                })
         binding.rcvExclusiveOffer.apply {
-            layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+            layoutManager =
+                LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+            addItemDecoration(
+                AdaptiveSpacingItemDecoration(
+                    activity.resources.getDimension(R.dimen.best_selling_item_spacing).toInt(),
+                    false
+                )
+            )
             setHasFixedSize(true)
             adapter = exclusiveProductAdapter
         }
@@ -279,13 +274,14 @@ class ShopFragment : ParentFragment() {
     }
 
     private fun getBestSelling() {
+        bestSellingProductList.clear()
         val documentReference = FirebaseDB().getCollectionReferenceForBestSelling()
         documentReference.addSnapshotListener { value, error ->
             val data = value?.toObjects(Products::class.java)
             Needle.onBackgroundThread().execute(object : UiRelatedTask<Void?>() {
                 override fun doWork(): Void? {
                     if (data != null) bestSellingProductList.addAll(data)
-                    Log.e("doWork: ", "exclusiveProductList => $bestSellingProductList")
+                    Log.e("doWork: ", "bestSellingProductList => $bestSellingProductList")
                     return null
                 }
 
@@ -303,13 +299,22 @@ class ShopFragment : ParentFragment() {
     }
 
     private fun setBestSellingAdapter() {
-        val bestSellingProductAdapter = BestSellingProductAdapter(activity, bestSellingProductList,
-            object : BestSellingProductAdapter.OnItemClickListener {
-                override fun onClicked(position: Int) {
-                }
-            })
+        val bestSellingProductAdapter =
+            BestSellingProductAdapter(activity, bestSellingProductList,
+                object : BestSellingProductAdapter.OnItemClickListener {
+                    override fun onClicked(position: Int) {
+                        val item = bestSellingProductList[position]
+                        addProductInBasket(item)
+                    }
+                })
         binding.rcvBestSelling.apply {
-            layoutManager = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
+            layoutManager =
+                GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
+            addItemDecoration(
+                AdaptiveSpacingItemDecoration(
+                    activity.resources.getDimension(R.dimen.best_selling_item_spacing).toInt(), true
+                )
+            )
             setHasFixedSize(true)
             adapter = bestSellingProductAdapter
         }
@@ -318,8 +323,48 @@ class ShopFragment : ParentFragment() {
         binding.rcvBestSelling.beVisible()
     }
 
+    @SuppressLint("HardwareIds")
+    private fun addProductInBasket(item: Products) {
+        val deviceId: String =
+            Settings.Secure.getString(activity.contentResolver, Settings.Secure.ANDROID_ID)
+        val documentReference =
+            FirebaseDB().getCollectionReferenceForBasket(deviceId)
+        val lastOrderId =
+            appPreference.getPreference(AppPersistence.keys.LAST_ORDER_ID_NUMBER) as Int
+        val orderIdNumber = lastOrderId + 1
+        val customId = "order_$orderIdNumber"
+        val product_order_quantity = "1"
+        val basketProduct = CartProductsData(
+            customId,
+            item.product_image,
+            item.product_name,
+            item.product_details,
+            item.product_benefits,
+            item.product_review,
+            item.product_quantity,
+            product_order_quantity,
+            item.product_weight,
+            item.product_price,
+            item.product_price
+        )
+        documentReference.document(customId).set(basketProduct)
+            .addOnSuccessListener {
+                // Data uploaded successfully
+                // You can add any success handling logic here
+                appPreference.setPreference(AppPersistence.keys.LAST_ORDER_ID_NUMBER, orderIdNumber)
+                Utils().showToast(activity, getString(R.string.product_add_in_basket))
+                listRefresh = true
+
+            }
+            .addOnFailureListener { e ->
+                // Handle the failure
+                Log.e("Firestore", "Error uploading item with custom ID $customId", e)
+                Utils().showToast(activity, getString(R.string.product_add_failed_in_basket))
+            }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
-        binding.viewPager.unregisterOnPageChangeCallback(pageChangeListener)
     }
 }
+

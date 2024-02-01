@@ -1,5 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">NectarGroceries</string>
+    <string name="loading">Loading…</string>
+    <string name="there_s_nothing_here">There\'s nothing here.</string>
+
     <!--    splash screen -->
     <string name="nectar">nectar</string>
     <string name="online_groceries">online groceries</string>
@@ -56,13 +59,46 @@
     <string name="card_number">Card number:</string>
     <string name="expiry_date">Expiry date:</string>
     <string name="security_code">Security code:</string>
+
+    <!--    main screen -->
     <string name="shop">Shop</string>
     <string name="cart">Cart</string>
     <string name="account">Account</string>
+    <string name="basket">My Basket</string>
+    <string name="yourProfile">Your Profile</string>
 
     <!--    shop screen-->
     <string name="exclusive_offer">Exclusive offer</string>
     <string name="best_selling">BestSelling</string>
+
+    <!--    cart screen-->
+    <string name="total_price">Total Price:$%s</string>
+    <string name="total_order">Total Order:%s</string>
+    <string name="product_add_in_basket">Product Add in Basket</string>
+    <string name="product_add_failed_in_basket">Product Adding failed in Basket</string>
+
+    <!--    account screen-->
+    <string name="edit_profile">Edit Profile</string>
+    <string name="logout">Logout</string>
+    <string name="please_first_login_account">Please first login account</string>
+
+    <!--    bottom order confirm dialog string -->
+    <string name="order_accept_message">Your Order has been accepted</string>
+    <string name="order_accept_sub_message">Your items has been placed and is on it’s way to being processed</string>
+    <string name="done">Done</string>
+    <string name="sendEmail">Submit</string>
+
+    <!--    bottom address info dialog string -->
+    <string name="add_address">Add Address</string>
+    <string name="add_address_info">Add Address Information</string>
+    <string name="apartment_no">Apartment / House No.</string>
+    <string name="apartment_name">Apartment Name / Street Details</string>
+    <string name="landmark">Landmark(optional)</string>
+    <string name="area_name">Area Name</string>
+    <string name="City">City</string>
+    <string name="State">State</string>
+    <string name="address_info_null_message">Please file address information</string>
+    <string name="address_information_added_successfully">Address information added successfully</string>
 
     <!--    item_product-->
     <string name="product_title">Apple</string>
@@ -70,11 +106,7 @@
     <string name="product_quantity">4,Pcs</string>
     <string name="product_weight">1Kg</string>
     <string name="product_price">$4.96</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="loading">Loading…</string>
-    <string name="there_s_nothing_here">There\'s nothing here.</string>
-
+    <string name="confirm_order">Confirm Order</string>
+    <string name="set_price">$%s</string>
 
 </resources>

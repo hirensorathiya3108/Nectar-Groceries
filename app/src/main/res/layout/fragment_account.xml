@@ -1,14 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.fragment.AccountFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:context=".ui.fragment.AccountFragment">
 
-</FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clUserContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cdUserData"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="@dimen/_20sdp"
+                    android:layout_marginHorizontal="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_75sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/llLoginTitle"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <com.nectar.groceries.nectargroceries.view.BoldTextView
+                            android:id="@+id/tvUserName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:includeFontPadding="false"
+                            android:text="@string/username"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_19ssp" />
+
+                        <com.nectar.groceries.nectargroceries.view.SimpleTextview
+                            android:id="@+id/tvEmail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:includeFontPadding="false"
+                            android:text="@string/email"
+                            android:textColor="@color/sub_desc_text_color"
+                            android:textSize="@dimen/_12ssp" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnEdiProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_28sdp"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:background="@drawable/account_btn_bg"
+                    android:fontFamily="@font/pangram_bold"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:padding="@dimen/_6sdp"
+                    android:text="@string/edit_profile"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textDirection="ltr"
+                    android:textSize="@dimen/_14ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cdUserData"
+                    tools:ignore="UnusedAttribute" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnLogOut"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_28sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:background="@drawable/account_btn_bg"
+                    android:fontFamily="@font/pangram_bold"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:padding="@dimen/_6sdp"
+                    android:text="@string/logout"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textDirection="ltr"
+                    android:textSize="@dimen/_14ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnEdiProfile"
+                    tools:ignore="UnusedAttribute" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/llUserLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/clUserContent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <com.nectar.groceries.nectargroceries.view.SimpleTextview
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:includeFontPadding="false"
+                    android:gravity="center"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/please_first_login_account"
+                    android:textColor="@color/sub_desc_text_color"
+                    android:textSize="@dimen/_12ssp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnLoginIn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_28sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:background="@drawable/account_btn_bg"
+                    android:fontFamily="@font/pangram_bold"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:padding="@dimen/_6sdp"
+                    android:text="@string/login_in"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textDirection="ltr"
+                    android:textSize="@dimen/_14ssp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnEdiProfile"
+                    tools:ignore="UnusedAttribute" />
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+</layout>

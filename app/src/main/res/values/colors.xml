@@ -4,9 +4,11 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="themeColor">#53B175</color>
+    <color name="divider_color">#33000000</color>
     <color name="splash_bg_color">@color/themeColor</color>
     <color name="payment_bg_color">#CCFCFCFC</color>
     <color name="sub_text_color">#B3FCFCFC</color>
     <color name="sub_desc_text_color">#7C7C7C</color>
     <color name="trans_secondary_20">#33000000</color>
+    <color name="border_color">#33000000</color>
 </resources>

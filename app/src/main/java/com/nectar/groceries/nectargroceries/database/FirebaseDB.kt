@@ -6,13 +6,14 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 
 
+
 class FirebaseDB {
 
     fun getCollectionReferenceForUser(): CollectionReference{
         val currentUser = FirebaseAuth.getInstance().currentUser
         Log.e( "getCollectionReferenceForUser: "," uid => ${currentUser!!.uid}" )
         return FirebaseFirestore.getInstance().collection("users")
-            .document(currentUser!!.uid).collection("General")
+            .document(currentUser.uid).collection("General")
     }
 
     fun getCollectionReferenceForBestSelling(): CollectionReference{
@@ -27,5 +28,10 @@ class FirebaseDB {
     fun getCollectionReferenceForOffer(): CollectionReference{
         return FirebaseFirestore.getInstance().collection("products")
             .document("offer").collection("offer_product")
+    }
+
+    fun getCollectionReferenceForBasket(deviceId:String): CollectionReference{
+        return FirebaseFirestore.getInstance().collection("basket")
+            .document(deviceId).collection("basket_product")
     }
 }

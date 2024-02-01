@@ -15,6 +15,7 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.gson.Gson
 import com.nectar.groceries.nectargroceries.R
+import com.nectar.groceries.nectargroceries.data.model.user.AddressData
 import com.nectar.groceries.nectargroceries.data.model.user.PaymentData
 import com.nectar.groceries.nectargroceries.data.model.user.ProfileData
 import com.nectar.groceries.nectargroceries.data.preference.AppPersistence
@@ -147,7 +148,8 @@ class PaymentInfoActivity : ParentActivity(), View.OnClickListener {
             card_expiry_date = edtExpiryDate,
             card_security_code = securityCode.toInt()
         )
-        val profileData = ProfileData(username!!, email!!, password, payment_info = paymentInfo)
+        val addressData = AddressData()
+        val profileData = ProfileData(username!!, email!!, password, payment_info = paymentInfo,addressData)
         val documentReference = FirebaseDB().getCollectionReferenceForUser().document()
         documentReference.set(profileData).addOnCompleteListener(object : OnCompleteListener<Void> {
             override fun onComplete(task: Task<Void>) {

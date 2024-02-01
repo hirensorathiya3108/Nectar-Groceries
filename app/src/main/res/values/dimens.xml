@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Example margins, you can adjust these values according to your design -->
-    <dimen name="activity_vertical_margin">@dimen/_13sdp</dimen>
-    <dimen name="activity_horizontal_margin">@dimen/_13sdp</dimen>
+    <dimen name="activity_vertical_margin">@dimen/_10sdp</dimen>
+    <dimen name="activity_horizontal_margin">@dimen/_10sdp</dimen>
+
+    <dimen name="best_selling_item_spacing">@dimen/_13sdp</dimen>
+    <dimen name="indicator_item_spacing">@dimen/_4sdp</dimen>
+    <dimen name="order_btn_text_size">@dimen/_10ssp</dimen>
 </resources>

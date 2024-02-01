@@ -1,15 +1,14 @@
 package com.nectar.groceries.nectargroceries.ui.activity
 
 import android.app.Activity
-import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.viewpager2.widget.ViewPager2
 import com.nectar.groceries.nectargroceries.R
 import com.nectar.groceries.nectargroceries.data.model.user.ProfileData
+import com.nectar.groceries.nectargroceries.data.preference.AppPersistence
 import com.nectar.groceries.nectargroceries.data.preference.AppPreference
 import com.nectar.groceries.nectargroceries.databinding.ActivityMainBinding
 import com.nectar.groceries.nectargroceries.extensions.isEnable
@@ -35,9 +34,9 @@ class MainActivity : ParentActivity() {
 
     private fun intiViews() {
         appPreference = AppPreference(activity)
-//        profileData = appPreference.getProfileDetails()!!
+        val isLogin = appPreference.getPreference(AppPersistence.keys.IS_LOGIN) as Boolean
+        if (isLogin) profileData = appPreference.getProfileDetails()!!
         setFragment()
-//        Log.e("intiViews: ","profileData => $profileData")
 
         // TODO: set color in bottom view
         val iconColorStates = createColorStateList(ContextCompat.getColor(activity,R.color.themeColor),ContextCompat.getColor(activity,R.color.black))
@@ -63,6 +62,7 @@ class MainActivity : ParentActivity() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 binding.bottomNav.menu.getItem(position).isChecked = true
+                setContentForFragment()
                 enableMenuItemsForFragment()
             }
         })
@@ -76,9 +76,26 @@ class MainActivity : ParentActivity() {
             }
             if (position != -1) {
                 binding.vpFragment.currentItem = position
+                setContentForFragment()
                 enableMenuItemsForFragment()
             }
             true
+        }
+    }
+
+    private fun setContentForFragment(){
+        when (getCurrentFragment()) {
+            is ShopFragment -> {
+              binding.tvMainTitle.text = activity.getString(R.string.app_name)
+            }
+
+            is CartFragment -> {
+                binding.tvMainTitle.text = activity.getString(R.string.basket)
+            }
+
+            is AccountFragment -> {
+                binding.tvMainTitle.text = activity.getString(R.string.yourProfile)
+            }
         }
     }
 

@@ -12,8 +12,6 @@
         android:layout_height="match_parent"
         tools:context=".ui.fragment.ShopFragment">
 
-        <!-- TODO: Update blank fragment layout -->
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -21,158 +19,172 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/rlSlider"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_100sdp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_height="@dimen/_110sdp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.viewpager2.widget.ViewPager2
-                    android:id="@+id/viewPager"
+                    android:id="@+id/vpSlider"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toTopOf="@+id/slideDotLL"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
 
-                <androidx.appcompat.widget.LinearLayoutCompat
+                <LinearLayout
                     android:id="@+id/slideDotLL"
-                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    app:layout_constraintBottom_toBottomOf="@+id/viewPager"
-                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    app:layout_constraintTop_toBottomOf="@+id/vpSlider"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <com.nectar.groceries.nectargroceries.view.BoldTextView
-                android:id="@+id/tvExclusiveOffer"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_8sdp"
-                android:text="@string/exclusive_offer"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:textSize="@dimen/_13sdp"
-                android:textColor="@color/black"
-                android:includeFontPadding="false"
-                android:textAlignment="textStart"
-                app:layout_constraintTop_toBottomOf="@+id/rlSlider"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
             <androidx.core.widget.NestedScrollView
-                android:id="@+id/nsExclusiveOffer"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvExclusiveOffer">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rcvExclusiveOffer"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:nestedScrollingEnabled="false"/>
-
-            </androidx.core.widget.NestedScrollView>
-
-            <com.nectar.groceries.nectargroceries.view.BoldTextView
-                android:id="@+id/tvBestselling"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginStart="@dimen/_8sdp"
-                android:text="@string/best_selling"
-                android:textSize="@dimen/_13sdp"
-                android:textColor="@color/black"
-                android:includeFontPadding="false"
-                android:textAlignment="textStart"
-                app:layout_constraintTop_toBottomOf="@+id/nsExclusiveOffer"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <androidx.core.widget.NestedScrollView
-                android:id="@+id/nsBestSelling"
+                android:id="@+id/nsAllScroll"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:fillViewport="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvBestselling">
+                app:layout_constraintTop_toBottomOf="@+id/rlSlider">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rcvBestSelling"
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:nestedScrollingEnabled="false" />
+                    android:orientation="vertical">
+
+                    <com.nectar.groceries.nectargroceries.view.BoldTextView
+                        android:id="@+id/tvExclusiveOffer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_13sdp"
+                        android:includeFontPadding="false"
+                        android:text="@string/exclusive_offer"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_13sdp" />
+
+                    <androidx.core.widget.NestedScrollView
+                        android:id="@+id/nsExclusiveOffer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rcvExclusiveOffer"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:layout_marginStart="@dimen/_13sdp"
+                            android:nestedScrollingEnabled="true" />
+
+                    </androidx.core.widget.NestedScrollView>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_weight="1">
+
+                        <com.nectar.groceries.nectargroceries.view.BoldTextView
+                            android:id="@+id/tvBestselling"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_13sdp"
+                            android:includeFontPadding="false"
+                            android:text="@string/best_selling"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_13sdp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rcvBestSelling"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:nestedScrollingEnabled="false"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvBestselling" />
+
+                        <LinearLayout
+                            android:id="@+id/isFilesLoading"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:visibility="visible"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvBestselling">
+
+                            <com.airbnb.lottie.LottieAnimationView
+                                android:id="@+id/loadingAnim"
+                                android:layout_width="@dimen/_50sdp"
+                                android:layout_height="@dimen/_50sdp"
+                                app:lottie_autoPlay="true"
+                                app:lottie_fileName="loading_progress.json"
+                                app:lottie_loop="true" />
+
+                            <com.nectar.groceries.nectargroceries.view.BoldTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:gravity="center"
+                                android:text="@string/loading"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_14sdp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/isEmptyList"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvBestselling">
+
+                            <com.airbnb.lottie.LottieAnimationView
+                                android:id="@+id/emptyAnim"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:lottie_autoPlay="true"
+                                app:lottie_fileName="empty.json"
+                                app:lottie_loop="true" />
+
+                            <com.nectar.groceries.nectargroceries.view.BoldTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="@string/there_s_nothing_here"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_14sdp" />
+
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
             </androidx.core.widget.NestedScrollView>
-
-
-            <LinearLayout
-                android:id="@+id/isFilesLoading"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:visibility="visible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvBestselling">
-
-                <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/loadingAnim"
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="@dimen/_50sdp"
-                    app:lottie_fileName="loading_progress.json"
-                    app:lottie_autoPlay="true"
-                    app:lottie_loop="true" />
-
-                <com.nectar.groceries.nectargroceries.view.BoldTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:gravity="center"
-                    android:text="@string/loading"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14sdp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/isEmptyList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvBestselling">
-
-                <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/emptyAnim"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:lottie_fileName="empty.json"
-                    app:lottie_autoPlay="true"
-                    app:lottie_loop="true" />
-
-                <com.nectar.groceries.nectargroceries.view.BoldTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/there_s_nothing_here"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14sdp" />
-
-            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

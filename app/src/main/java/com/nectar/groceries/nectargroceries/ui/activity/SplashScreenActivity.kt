@@ -16,6 +16,7 @@ import com.nectar.groceries.nectargroceries.R
 import com.nectar.groceries.nectargroceries.data.preference.AppPersistence
 import com.nectar.groceries.nectargroceries.data.preference.AppPreference
 import com.nectar.groceries.nectargroceries.databinding.ActivitySplashScreenBinding
+import com.nectar.groceries.nectargroceries.ui.fragment.ParentFragment
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : ParentActivity() {
@@ -51,6 +52,7 @@ class SplashScreenActivity : ParentActivity() {
         val isIntroShow = appPreference.getPreference(AppPersistence.keys.IS_INTRO_SHOW) as? Boolean ?: false
         val targetActivity = if(isIntroShow) MainActivity::class.java else StartActivity::class.java
         Handler(Looper.getMainLooper()).postDelayed({
+            ParentFragment.listRefresh = true
             startActivity(Intent(activity,targetActivity))
             finish()
         },2000)
@@ -77,6 +79,12 @@ class SplashScreenActivity : ParentActivity() {
         }
         if (appPreference.getPreference(AppPersistence.keys.USER_INFO_DATA) == null){
             appPreference.setPreference(AppPersistence.keys.USER_INFO_DATA,"")
+        }
+        if (appPreference.getPreference(AppPersistence.keys.IS_FILE_ADDRESS_INFO) == null){
+            appPreference.setPreference(AppPersistence.keys.IS_FILE_ADDRESS_INFO,false)
+        }
+        if (appPreference.getPreference(AppPersistence.keys.LAST_ORDER_ID_NUMBER) == null){
+            appPreference.setPreference(AppPersistence.keys.LAST_ORDER_ID_NUMBER,0)
         }
     }
 }

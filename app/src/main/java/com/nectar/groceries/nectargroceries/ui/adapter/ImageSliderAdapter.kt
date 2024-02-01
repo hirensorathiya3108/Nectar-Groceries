@@ -5,13 +5,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.nectar.groceries.nectargroceries.R
+import com.nectar.groceries.nectargroceries.data.model.products.ProductOffer
 
-class ImageSliderAdapter(private val images: Array<Int>) :
+class ImageSliderAdapter(private val productOfferList: ArrayList<ProductOffer>) :
     RecyclerView.Adapter<ImageSliderAdapter.ImageViewHolder>() {
 
     inner class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.findViewById(R.id.imageView)
+
+        fun bindData(item: ProductOffer){
+            Glide.with(itemView)
+                .load(item.url)
+                .into(imageView)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
@@ -21,10 +29,11 @@ class ImageSliderAdapter(private val images: Array<Int>) :
     }
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
-        holder.imageView.setImageResource(images[position])
+        val item = productOfferList[position]
+        holder.bindData(item)
     }
 
     override fun getItemCount(): Int {
-        return images.size
+        return productOfferList.size
     }
 }

@@ -13,6 +13,36 @@
         android:background="@color/white"
         tools:context=".ui.activity.MainActivity">
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/themeColor"
+                android:minHeight="?attr/actionBarSize">
+
+                <com.nectar.groceries.nectargroceries.view.BoldTextView
+                    android:id="@+id/tvMainTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:includeFontPadding="false"
+                    android:text="@string/app_name"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_16ssp"
+                    android:textStyle="bold" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vpFragment"
             android:layout_width="match_parent"
@@ -20,7 +50,7 @@
             app:layout_constraintBottom_toTopOf="@+id/bottomNav"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/appBarMain" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNav"
@@ -29,15 +59,14 @@
             android:fitsSystemWindows="true"
             android:theme="@style/BottomNavigationMenuTextStyle"
             android:visibility="visible"
+            app:itemActiveIndicatorStyle="@null"
+            app:itemBackground="@null"
             app:itemTextColor="@color/black"
             app:labelVisibilityMode="labeled"
-            app:itemBackground="@null"
-            app:itemActiveIndicatorStyle="@null"
-            app:menu="@menu/bottom_nav"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
-
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/bottom_nav" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

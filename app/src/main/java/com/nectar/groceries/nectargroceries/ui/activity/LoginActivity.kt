@@ -27,6 +27,7 @@ import com.nectar.groceries.nectargroceries.extensions.beGone
 import com.nectar.groceries.nectargroceries.extensions.beInvisible
 import com.nectar.groceries.nectargroceries.extensions.beVisible
 import com.nectar.groceries.nectargroceries.utils.Utils
+import com.nectar.groceries.nectargroceries.view.dialog.ForgotPasswordDialog
 
 class LoginActivity : ParentActivity(), View.OnClickListener {
     private lateinit var binding: ActivityLoginBinding
@@ -73,6 +74,7 @@ class LoginActivity : ParentActivity(), View.OnClickListener {
 
         binding.btnLogin.setOnClickListener(this)
         binding.ivVisibility.setOnClickListener(this)
+        binding.tvForgotPassword.setOnClickListener(this)
         binding.tvSingUp.setOnClickListener(this)
     }
 
@@ -107,15 +109,16 @@ class LoginActivity : ParentActivity(), View.OnClickListener {
 
     private fun getUserData() {
         val documentReference =
-            FirebaseDB().getCollectionReferenceForUser().document("fDTFFs6iOj04ARQf4qSF")
+            FirebaseDB().getCollectionReferenceForUser().document("awmYixNTNRnSlgBReRLg")
         documentReference.addSnapshotListener { value, error ->
             if (error != null) {
                 Utils().showToast(activity,"Error fetching document: $error")
                 return@addSnapshotListener
             }
             if (value != null) {
-                 profileData = value.toObject<ProfileData>(ProfileData::class.java)!!
+                 val profileData = value.toObject<ProfileData>(ProfileData::class.java)!!
                 if (profileData != null) {
+                    Log.e( "getUserData: ","profileData => $profileData" )
                     val json = Gson().toJson(profileData)
                     AppPreference(activity).setPreference(
                         AppPersistence.keys.USER_INFO_DATA,
@@ -177,8 +180,12 @@ class LoginActivity : ParentActivity(), View.OnClickListener {
                 loginUser()
             }
 
+            R.id.tvForgotPassword -> {
+                ForgotPasswordDialog().showDialog(activity)
+            }
             R.id.tvSingUp -> {
                 startActivity(Intent(activity, RegistrationActivity::class.java))
+                finish()
             }
 
             R.id.ivVisibility -> {
