@@ -2,6 +2,7 @@ package com.nectar.groceries.nectargroceries.ui.fragment
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -30,6 +31,7 @@ import android.provider.Settings
 import com.nectar.groceries.nectargroceries.data.model.products.CartProductsData
 import com.nectar.groceries.nectargroceries.data.preference.AppPersistence
 import com.nectar.groceries.nectargroceries.data.preference.AppPreference
+import com.nectar.groceries.nectargroceries.ui.activity.ProductDetailsActivity
 import com.nectar.groceries.nectargroceries.utils.Utils
 
 
@@ -67,79 +69,10 @@ class ShopFragment : ParentFragment() {
         exclusiveProductList = ArrayList()
         bestSellingProductList = ArrayList()
         offerImageList = ArrayList()
-//        sendProductInFirebaseDataBase()
         getOfferDataList()
         getExclusiveOffer()
         getBestSelling()
 
-    }
-
-    private fun sendProductInFirebaseDataBase() {
-        val documentReference = FirebaseDB().getCollectionReferenceForBestSelling()
-
-        /*val itemList = arrayListOf(
-            Pair(
-                "product_1", Products(
-                    "https://firebasestorage.googleapis.com/v0/b/nectargroceries-bab35.appspot.com/o/product_image%2Fexclusive_offer%2Fic_apple.png?alt=media&token=0d56c645-3129-4038-b1e7-6d31346f69fc",
-                    "Apple - Shimla",
-                    "Product image shown is for representation purpose only, the actually product may vary based on season, produce & availability.",
-                    "Apples are one of the healthiest fruits. Gala apples are a significant source of these damage-fighting chemicals due to the presence of antioxidants.",
-                    4.5,
-                    "5,pcs",
-                    "1kg",
-                    "$4.99"
-                )
-            ),
-            Pair(
-                "product_2", Products(
-                    "https://firebasestorage.googleapis.com/v0/b/nectargroceries-bab35.appspot.com/o/product_image%2Fexclusive_offer%2Fstrawberry.jpg?alt=media&token=893e7d43-99e3-4a88-a537-168f4b2f3d66",
-                    "Strawberry",
-                    "Firm and fibrous ginger roots are stretched with multiple fingers that have light to dark tan skin and rings on it and is aromatic, spicy and pungent.",
-                    "Strawberries improve heart function.They are rich in antioxidants and detoxifiers, which reduce arthritis and gout pain.",
-                    4.5,
-                    "",
-                    "200g",
-                    "$1.5"
-                )
-            ),
-            Pair(
-                "product_3", Products(
-                    "https://firebasestorage.googleapis.com/v0/b/nectargroceries-bab35.appspot.com/o/product_image%2Fexclusive_offer%2Fginger.png?alt=media&token=8b235b86-5c35-42fc-a433-d620fd9a1ac2",
-                    "Ginger(Loose)",
-                    "Firm and fibrous ginger roots are stretched with multiple fingers that have light to dark tan skin and rings on it and is aromatic, spicy and pungent.",
-                    "Drinking ginger juice is a great medicine to relieve sore throats.",
-                    4.5,
-                    "",
-                    "100g",
-                    "$1"
-                )
-            ),
-            Pair(
-                "product_4", Products(
-                    "https://firebasestorage.googleapis.com/v0/b/nectargroceries-bab35.appspot.com/o/product_image%2Fexclusive_offer%2FOrganicBananas.png?alt=media&token=3134c7db-cc2e-412b-ab2b-758bb4dd7d0e",
-                    "Baby Banana",
-                    "Robusta bananas have a very dense creamy texture and once ripe their flavour is rich and sweet.",
-                    "One banana supplies 30 percent of the daily vitamin B6 requirement and is rich in vitamin C, potassium and fiber.",
-                    4.5,
-                    "(9-12pcs)",
-                    "1kg",
-                    "$3.99"
-                )
-            ),
-        )
-
-        for ((customId, item) in itemList) {
-            documentReference.document(customId)
-                .set(item)
-                .addOnSuccessListener {
-                    // Data uploaded successfully
-                    // You can add any success handling logic here
-                }
-                .addOnFailureListener { e ->
-                    // Handle the failure
-                    Log.e("Firestore", "Error uploading item with custom ID $customId", e)
-                }
-        }*/
     }
 
     @SuppressLint("SuspiciousIndentation")
@@ -163,7 +96,6 @@ class ShopFragment : ParentFragment() {
     }
 
     private fun setSliderView() {
-        Log.e("thenDoUiRelatedWork: ", "runSetSlider => Enter")
         val imageAdapter = ImageAdapter()
         imageAdapter.submitList(offerImageList)
         binding.vpSlider.adapter = imageAdapter
@@ -234,7 +166,6 @@ class ShopFragment : ParentFragment() {
             Needle.onBackgroundThread().execute(object : UiRelatedTask<Void?>() {
                 override fun doWork(): Void? {
                     if (data != null) exclusiveProductList.addAll(data)
-                    Log.e("doWork: ", "exclusiveProductList => $exclusiveProductList")
                     return null
                 }
 
@@ -254,6 +185,20 @@ class ShopFragment : ParentFragment() {
             ExclusiveProductAdapter(activity, exclusiveProductList,
                 object : ExclusiveProductAdapter.OnItemClickListener {
                     override fun onClicked(position: Int) {
+                        val item = exclusiveProductList[position]
+                        startActivity(Intent(activity,ProductDetailsActivity::class.java).apply {
+                            putExtra("productImage",item.product_image)
+                            putExtra("productTitle",item.product_name)
+                            putExtra("productDetails",item.product_details)
+                            putExtra("productBenefits",item.product_benefits)
+                            putExtra("productReview",item.product_review.toFloat())
+                            putExtra("productQuantity",item.product_quantity)
+                            putExtra("productWeight",item.product_weight)
+                            putExtra("productPrice",item.product_price)
+                        })
+                    }
+
+                    override fun onAddCart(position: Int) {
                         val item = exclusiveProductList[position]
                         addProductInBasket(item)
                     }
@@ -281,7 +226,6 @@ class ShopFragment : ParentFragment() {
             Needle.onBackgroundThread().execute(object : UiRelatedTask<Void?>() {
                 override fun doWork(): Void? {
                     if (data != null) bestSellingProductList.addAll(data)
-                    Log.e("doWork: ", "bestSellingProductList => $bestSellingProductList")
                     return null
                 }
 
@@ -303,6 +247,20 @@ class ShopFragment : ParentFragment() {
             BestSellingProductAdapter(activity, bestSellingProductList,
                 object : BestSellingProductAdapter.OnItemClickListener {
                     override fun onClicked(position: Int) {
+                        val item = bestSellingProductList[position]
+                      startActivity(Intent(activity,ProductDetailsActivity::class.java).apply {
+                          putExtra("productImage",item.product_image)
+                          putExtra("productTitle",item.product_name)
+                          putExtra("productDetails",item.product_details)
+                          putExtra("productBenefits",item.product_benefits)
+                          putExtra("productReview",item.product_review.toFloat())
+                          putExtra("productQuantity",item.product_quantity)
+                          putExtra("productWeight",item.product_weight)
+                          putExtra("productPrice",item.product_price)
+                      })
+                    }
+
+                    override fun addCart(position: Int) {
                         val item = bestSellingProductList[position]
                         addProductInBasket(item)
                     }
@@ -358,7 +316,6 @@ class ShopFragment : ParentFragment() {
             }
             .addOnFailureListener { e ->
                 // Handle the failure
-                Log.e("Firestore", "Error uploading item with custom ID $customId", e)
                 Utils().showToast(activity, getString(R.string.product_add_failed_in_basket))
             }
     }

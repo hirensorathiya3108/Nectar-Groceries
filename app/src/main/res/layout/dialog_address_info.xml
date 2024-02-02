@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/orderConfirmRoot"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@drawable/rectangle_bottom_dialog">
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -77,6 +77,7 @@
             android:layout_marginTop="@dimen/_15sdp"
             android:fontFamily="@font/pangram_regular"
             android:hint="@string/area_name"
+            android:singleLine="true"
             android:includeFontPadding="false"
             android:textColor="@color/black"
             android:textSize="@dimen/_11ssp"
@@ -94,6 +95,7 @@
             android:hint="@string/City"
             android:inputType="text"
             android:includeFontPadding="false"
+            android:singleLine="true"
             android:textColor="@color/black"
             android:textSize="@dimen/_11ssp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -111,6 +113,7 @@
             android:includeFontPadding="false"
             android:textColor="@color/black"
             android:inputType="text"
+            android:singleLine="true"
             android:textSize="@dimen/_11ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

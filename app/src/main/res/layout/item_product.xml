@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/clProductRoot"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:padding="@dimen/_3sdp"
@@ -38,10 +39,11 @@
                 android:layout_height="wrap_content"
                 android:includeFontPadding="false"
                 android:text="@string/product_title"
+                android:singleLine="true"
                 android:layout_marginStart="@dimen/_6sdp"
                 android:textColor="@color/black"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:textSize="@dimen/_14ssp"
+                android:textSize="@dimen/_13ssp"
                 app:layout_constraintTop_toBottomOf="@+id/ivProductImage"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>

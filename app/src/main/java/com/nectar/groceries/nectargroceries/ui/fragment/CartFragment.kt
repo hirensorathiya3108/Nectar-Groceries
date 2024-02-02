@@ -86,7 +86,7 @@ class CartFragment : ParentFragment(), View.OnClickListener {
                                 binding.isEmptyList.beVisible()
                                 binding.isFilesLoading.beGone()
                                 binding.rcvOreder.beGone()
-                                binding.llOrderDetails.beGone()
+                                binding.llOrderDetailsContent.beGone()
                             } else {
                                 setBasketOrderAdapter()
                                 setTotalOrderData()
@@ -153,12 +153,14 @@ class CartFragment : ParentFragment(), View.OnClickListener {
         // Update the data in Firebase Realtime Database
         databaseReference.update(updatedData)
             .addOnSuccessListener {
-                Log.d("Firebase Update", "Data updated successfully")
                 activity.runOnUiThread { setTotalOrderData() }
 //                getOrderData()
             }
             .addOnFailureListener { e ->
-                Log.e("Firebase Update", "Error updating data: $e")
+                Utils().showToast(
+                    activity,
+                    e.localizedMessage!!
+                )
             }
     }
 
@@ -169,7 +171,10 @@ class CartFragment : ParentFragment(), View.OnClickListener {
         // Update the data in Firebase Realtime Database
         databaseReference.delete()
             .addOnSuccessListener {
-                Log.d("Firebase Update", "Data updated successfully")
+                Utils().showToast(
+                    activity,
+                    "remove order successfully"
+                )
                 activity.runOnUiThread {
                     orderProductList.removeAt(position)
                     basketOrderProductAdapter.notifyDataSetChanged()
@@ -178,12 +183,15 @@ class CartFragment : ParentFragment(), View.OnClickListener {
 //                getOrderData()
             }
             .addOnFailureListener { e ->
-                Log.e("Firebase Update", "Error updating data: $e")
+                Utils().showToast(
+                    activity,
+                    e.localizedMessage!!
+                )
             }
     }
 
     private fun setTotalOrderData() {
-        binding.llOrderDetails.beVisible()
+        binding.llOrderDetailsContent.beVisible()
         val totalPrice = String.format("%.2f", calculateTotalPrice(orderProductList))
         binding.tvTotalPrice.text = activity.getString(
             R.string.total_price, totalPrice
@@ -196,14 +204,8 @@ class CartFragment : ParentFragment(), View.OnClickListener {
         var totalPrice = BigDecimal.ZERO
 
         for (product in orderProductList) {
-            Log.e(
-                "calculateTotalPrice: ",
-                "product_price => ${extractNumericPrice(product.product_price)!!}"
-            )
-            val productPrice =
-                extractNumericPrice2(product.product_price.replace("$", "")) ?: BigDecimal.ZERO
+            val productPrice = extractNumericPrice2(product.product_price.replace("£", "")) ?: BigDecimal.ZERO
             totalPrice = totalPrice.add(productPrice)
-            Log.e("calculateTotalPrice: ", "totalPrice => $totalPrice")
         }
 
         return totalPrice.toDouble()
@@ -220,7 +222,7 @@ class CartFragment : ParentFragment(), View.OnClickListener {
 
     private fun extractNumericPrice(productPrice: String): Double? {
         // Define a regex pattern to find the numeric part after the "$" symbol
-        val replacePrice = productPrice.replace("$", "")
+        val replacePrice = productPrice.replace("£", "")
 
         return replacePrice.toDouble()
     }
@@ -234,8 +236,15 @@ class CartFragment : ParentFragment(), View.OnClickListener {
                     startActivity(Intent(activity, LoginActivity::class.java))
                 } else {
                     if(!isFileAddress){
-                        Log.e( "onClick: ","add => address" )
-                        AddressInformationDialog().showDialog(activity)
+                        AddressInformationDialog().showDialog(activity, object : AddressInformationDialog.OnDialogClickListener {
+                            override fun onClicked() {
+                                binding.orderBtn.text =
+                                    if (isLogin){
+                                        if (isFileAddress) activity.getString(R.string.confirm_order) else activity.getString(R.string.add_address)
+                                    } else activity.getString(R.string.login_in)
+//                                if (isFileAddress)binding.orderBtn.textSize = activity.resources.getDimension(R.dimen.order_btn_text_size)
+                            }
+                        })
                     } else {
                         if (orderProductList.size != 0){
                             OrderConfirmDialog().showDialog(activity)
@@ -250,7 +259,6 @@ class CartFragment : ParentFragment(), View.OnClickListener {
     @SuppressLint("HardwareIds")
     override fun onResume() {
         super.onResume()
-        Log.e("onResume: ", "onResume => ")
         deviceId = Settings.Secure.getString(activity.contentResolver, Settings.Secure.ANDROID_ID)
         val isLogin = appPreference.getPreference(AppPersistence.keys.IS_LOGIN) as Boolean
         val isFileAddress = appPreference.getPreference(AppPersistence.keys.IS_FILE_ADDRESS_INFO) as Boolean
@@ -258,7 +266,7 @@ class CartFragment : ParentFragment(), View.OnClickListener {
             if (isLogin){
                 if (isFileAddress) activity.getString(R.string.confirm_order) else activity.getString(R.string.add_address)
             } else activity.getString(R.string.login_in)
-        if (isFileAddress)binding.orderBtn.textSize = activity.resources.getDimension(R.dimen.order_btn_text_size)
+//        if (isFileAddress)binding.orderBtn.textSize = activity.resources.getDimension(R.dimen.order_btn_text_size)
         if (listRefresh) getOrderData()
     }
 

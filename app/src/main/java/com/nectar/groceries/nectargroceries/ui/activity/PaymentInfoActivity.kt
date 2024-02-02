@@ -109,7 +109,6 @@ class PaymentInfoActivity : ParentActivity(), View.OnClickListener {
             override fun onComplete(task: Task<AuthResult>) {
                 if (task.isSuccessful) {
                     Utils().showToast(activity, "Successfully create account")
-                    Log.e("onComplete: ", "firebase => ${firebaseAuth.currentUser?.email}")
                     val email = firebaseAuth.currentUser?.email
                     addLoginInfo(
                         username,
@@ -156,7 +155,6 @@ class PaymentInfoActivity : ParentActivity(), View.OnClickListener {
                 changeInProgress(false)
                 if (task.isSuccessful) {
                     val documentId = documentReference.id
-                    Log.e("onComplete: ", "documentId => $documentId")
                     getUserData()
                 } else {
                     Utils().showToast(activity, "Failed while adding user info")
@@ -189,7 +187,6 @@ class PaymentInfoActivity : ParentActivity(), View.OnClickListener {
                 } else {
                     changeInProgress(false)
                     appPreference.setPreference(AppPersistence.keys.IS_LOGIN,false)
-                    Log.e("onComplete: ", "Failed to retrieve document snapshot")
                 }
             }
         }

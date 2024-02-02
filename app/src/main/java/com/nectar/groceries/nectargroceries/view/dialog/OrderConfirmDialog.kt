@@ -15,14 +15,14 @@ import com.nectar.groceries.nectargroceries.databinding.DialogOrderConfirmBindin
 
 class OrderConfirmDialog {
     private lateinit var mActivity: Activity
-    private lateinit var binding: DialogForgotPasswordBinding
+    private lateinit var binding: DialogOrderConfirmBinding
     private lateinit var mDialog: BottomSheetDialog
     fun showDialog(activity: Activity) {
         mActivity = activity
         mDialog = BottomSheetDialog(activity, R.style.SheetDialog)
         binding = DataBindingUtil.inflate(
             activity.layoutInflater,
-            R.layout.dialog_forgot_password,
+            R.layout.dialog_order_confirm,
             null,
             false
         )

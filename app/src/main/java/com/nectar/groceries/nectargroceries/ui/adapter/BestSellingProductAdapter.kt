@@ -16,6 +16,7 @@ class BestSellingProductAdapter(
 
     interface OnItemClickListener{
         fun onClicked(position: Int)
+        fun addCart(position: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -39,7 +40,8 @@ class BestSellingProductAdapter(
             if (item.product_name != "")binding.tvProductWeight.text = item.product_weight
             if (item.product_price != "")binding.tvProductPrice.text = item.product_price
 
-            binding.btnAddCart.setOnClickListener { listener.onClicked(position) }
+            binding.clProductRoot.setOnClickListener { listener.onClicked(position) }
+            binding.btnAddCart.setOnClickListener { listener.addCart(position) }
         }
 
     }

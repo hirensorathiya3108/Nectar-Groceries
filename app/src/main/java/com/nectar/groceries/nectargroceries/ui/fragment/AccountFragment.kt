@@ -67,6 +67,7 @@ class AccountFragment : ParentFragment(),View.OnClickListener {
         super.onResume()
         val isLogin = appPreference.getPreference(AppPersistence.keys.IS_LOGIN) as Boolean
         if (isLogin){
+            displayData()
             binding.llUserLogin.beGone()
             binding.clUserContent.beVisible()
         } else{

@@ -129,7 +129,7 @@
                 android:elevation="@dimen/_4sdp"
                 android:background="@drawable/edt_text_bg"
                 android:fontFamily="@font/pangram_regular"
-                android:hint="@string/enter_card_number"
+                android:hint="@string/enter_card_number_format"
                 android:maxLength="16"
                 android:inputType="number"
                 android:includeFontPadding="false"

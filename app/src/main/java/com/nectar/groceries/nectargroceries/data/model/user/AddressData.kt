@@ -5,5 +5,4 @@ data class AddressData(
     val aparment_name:String = "",
     val area:String = "",
     val city:String = "",
-    val state:String = ""
 )

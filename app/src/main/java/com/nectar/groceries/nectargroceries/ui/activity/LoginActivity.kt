@@ -101,6 +101,7 @@ class LoginActivity : ParentActivity(), View.OnClickListener {
                         Utils().showToast(activity, "Successfully login account")
                     } else {
                         Utils().showToast(activity, task.exception!!.localizedMessage!!)
+                        changeInProgress(false)
                     }
                 }
 
@@ -118,14 +119,9 @@ class LoginActivity : ParentActivity(), View.OnClickListener {
             if (value != null) {
                  val profileData = value.toObject<ProfileData>(ProfileData::class.java)!!
                 if (profileData != null) {
-                    Log.e( "getUserData: ","profileData => $profileData" )
                     val json = Gson().toJson(profileData)
-                    AppPreference(activity).setPreference(
-                        AppPersistence.keys.USER_INFO_DATA,
-                        json
-                    )
                     appPreference.setPreference(AppPersistence.keys.USER_INFO_DATA,json)
-                    if(profileData.address_info.aparment_name.isNotEmpty()) appPreference.setPreference(AppPersistence.keys.IS_FILE_ADDRESS_INFO,true)
+                    if(profileData.address_info.city.isNotEmpty()) appPreference.setPreference(AppPersistence.keys.IS_FILE_ADDRESS_INFO,true)
                     appPreference.setPreference(AppPersistence.keys.IS_LOGIN,true)
                     changeInProgress(false)
                     Utils().showToast(activity, "User info get successfully")
@@ -134,7 +130,6 @@ class LoginActivity : ParentActivity(), View.OnClickListener {
                 } else {
                     changeInProgress(false)
                     appPreference.setPreference(AppPersistence.keys.IS_LOGIN,false)
-                    Log.e("onComplete: ", "Failed to retrieve document snapshot")
                 }
             }
         }
@@ -147,7 +142,7 @@ class LoginActivity : ParentActivity(), View.OnClickListener {
         }
 
         if (edtPassword == "") {
-            binding.edtPassword.error = activity.getString(R.string.please_enter_password)
+            Utils().showToast(activity,activity.getString(R.string.please_enter_password))
             return false
         }
 
@@ -158,7 +153,7 @@ class LoginActivity : ParentActivity(), View.OnClickListener {
 
         val passwordLength = 8
         if (edtPassword.length != passwordLength) {
-            binding.edtPassword.error = activity.getString(R.string.password_length_invalid)
+            Utils().showToast(activity,activity.getString(R.string.password_length_invalid))
             return false
         }
 

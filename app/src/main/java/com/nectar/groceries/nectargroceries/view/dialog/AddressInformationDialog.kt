@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.util.Log
 import android.view.Gravity
+import android.view.View.OnClickListener
 import android.view.Window
 import android.view.WindowManager
 import androidx.core.content.ContextCompat.startActivity
@@ -32,8 +33,12 @@ class AddressInformationDialog {
     private lateinit var binding: DialogAddressInfoBinding
     private lateinit var mDialog: BottomSheetDialog
     private lateinit var appPreference: AppPreference
-    fun showDialog(activity: Activity) {
-        Log.e( "showDialog: ","add => address" )
+    private lateinit var mOnDialogClickListener:OnDialogClickListener
+    interface OnDialogClickListener{
+        fun onClicked()
+    }
+    fun showDialog(activity: Activity,onDialogClickListener:OnDialogClickListener) {
+        if(onDialogClickListener!= null) mOnDialogClickListener = onDialogClickListener
         mActivity = activity
         appPreference = AppPreference(mActivity)
         mDialog = BottomSheetDialog(activity, R.style.SheetDialog)
@@ -60,9 +65,8 @@ class AddressInformationDialog {
         val edtApartmentName = binding.edtApartmentName.text.toString()
         val edtAreaName = binding.edtAreaName.text.toString()
         val edtCityName = binding.edtCityName.text.toString()
-        val edtStateName = binding.edtStateName.text.toString()
         val isValidated =
-            validated(edtApartmentNumber, edtApartmentName, edtAreaName, edtCityName, edtStateName)
+            validated(edtApartmentNumber, edtApartmentName, edtAreaName, edtCityName)
         if (!isValidated) return
 
         updateDataInFirebase(
@@ -70,7 +74,6 @@ class AddressInformationDialog {
             edtApartmentName,
             edtAreaName,
             edtCityName,
-            edtStateName,
         )
     }
 
@@ -79,17 +82,15 @@ class AddressInformationDialog {
         edtApartmentName: String,
         edtAreaName: String,
         edtCityName: String,
-        edtStateName: String
     ) {
         val addressData = AddressData(
             edtApartmentNumber,
             edtApartmentName,
             edtAreaName,
             edtCityName,
-            edtStateName
         )
 
-        val documentReference = FirebaseDB().getCollectionReferenceForUser().document()
+        val documentReference = FirebaseDB().getCollectionReferenceForUser().document("data")
         // Create a map with the updated data
         val updatedData = mapOf(
             "address_info" to addressData,
@@ -99,17 +100,16 @@ class AddressInformationDialog {
         documentReference.update(updatedData)
             .addOnSuccessListener {
                 getUserData()
-                Utils().showToast(mActivity,
-                    mActivity.getString(R.string.address_information_added_successfully))
+                mOnDialogClickListener.onClicked()
+                Utils().showToast(mActivity, mActivity.getString(R.string.address_information_added_successfully))
             }
             .addOnFailureListener { e ->
-                Log.e("Firebase Update", "Error address information added data: $e")
             }
     }
 
     private fun getUserData() {
         val documentReference =
-            FirebaseDB().getCollectionReferenceForUser().document("fDTFFs6iOj04ARQf4qSF")
+            FirebaseDB().getCollectionReferenceForUser().document("data")
         documentReference.addSnapshotListener { value, error ->
             if (error != null) {
                 Utils().showToast(mActivity,"Error fetching document: $error")
@@ -132,7 +132,6 @@ class AddressInformationDialog {
                 } else {
                     changeInProgress(false)
                     appPreference.setPreference(AppPersistence.keys.IS_LOGIN,false)
-                    Log.e("onComplete: ", "Failed to retrieve document snapshot")
                 }
             }
         }
@@ -142,13 +141,11 @@ class AddressInformationDialog {
         edtApartmentName: String,
         edtAreaName: String,
         edtCityName: String,
-        edtStateName: String
     ): Boolean {
         if (edtApartmentNumber.isEmpty() &&
             edtApartmentName.isEmpty() &&
             edtAreaName.isEmpty() &&
-            edtCityName.isEmpty() &&
-            edtStateName.isEmpty()
+            edtCityName.isEmpty()
         ) {
             Utils().showToast(mActivity, mActivity.getString(R.string.address_info_null_message))
             return false

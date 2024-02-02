@@ -6,5 +6,5 @@
 
     <dimen name="best_selling_item_spacing">@dimen/_13sdp</dimen>
     <dimen name="indicator_item_spacing">@dimen/_4sdp</dimen>
-    <dimen name="order_btn_text_size">@dimen/_10ssp</dimen>
+    <dimen name="order_btn_text_size">@dimen/_8ssp</dimen>
 </resources>

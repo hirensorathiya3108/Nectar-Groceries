@@ -54,6 +54,7 @@
     <string name="security_code_invalid">Security code invalid</string>
     <string name="please_enter_card_security_code">Please enter your card security code</string>
     <string name="enter_card_number">Enter your card number here</string>
+    <string name="enter_card_number_format">0000 0000 0000 0000</string>
     <string name="enter_card_security_code">000</string>
     <string name="expiry_date_format">00/00</string>
     <string name="card_number">Card number:</string>
@@ -72,7 +73,7 @@
     <string name="best_selling">BestSelling</string>
 
     <!--    cart screen-->
-    <string name="total_price">Total Price:$%s</string>
+    <string name="total_price">Total Price:£%s</string>
     <string name="total_order">Total Order:%s</string>
     <string name="product_add_in_basket">Product Add in Basket</string>
     <string name="product_add_failed_in_basket">Product Adding failed in Basket</string>
@@ -83,6 +84,20 @@
     <string name="logout">Logout</string>
     <string name="please_first_login_account">Please first login account</string>
 
+    <!--    edit profile screen-->
+    <string name="personal_details">Personal Details</string>
+    <string name="update_profile_string">Update Profile</string>
+    <string name="update_profile_message">Update Profile data has been successfully</string>
+    <string name="please_update_profile_message">Please Change profile data filed</string>
+
+    <!--    product details screen-->
+    <string name="add_in_basket">Add In Basket</string>
+    <string name="product_details">Details</string>
+    <string name="product_sub_details">Details</string>
+    <string name="product_benefits">Benefits</string>
+    <string name="product_sub_benefits">Benefits</string>
+    <string name="product_Review">Review</string>
+
     <!--    bottom order confirm dialog string -->
     <string name="order_accept_message">Your Order has been accepted</string>
     <string name="order_accept_sub_message">Your items has been placed and is on it’s way to being processed</string>
@@ -91,6 +106,7 @@
 
     <!--    bottom address info dialog string -->
     <string name="add_address">Add Address</string>
+    <string name="address_info">Address Information</string>
     <string name="add_address_info">Add Address Information</string>
     <string name="apartment_no">Apartment / House No.</string>
     <string name="apartment_name">Apartment Name / Street Details</string>
@@ -108,6 +124,6 @@
     <string name="product_weight">1Kg</string>
     <string name="product_price">$4.96</string>
     <string name="confirm_order">Confirm Order</string>
-    <string name="set_price">$%s</string>
+    <string name="set_price">£%s</string>
 
 </resources>

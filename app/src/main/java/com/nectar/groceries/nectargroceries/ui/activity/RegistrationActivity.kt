@@ -19,7 +19,7 @@ import com.nectar.groceries.nectargroceries.data.preference.AppPreference
 import com.nectar.groceries.nectargroceries.databinding.ActivityRegistrationBinding
 import com.nectar.groceries.nectargroceries.utils.Utils
 
-class RegistrationActivity : ParentActivity(), View.OnClickListener{
+class RegistrationActivity : ParentActivity(), View.OnClickListener {
     private lateinit var binding: ActivityRegistrationBinding
     private lateinit var activity: Activity
     private lateinit var appPreference: AppPreference
@@ -32,18 +32,20 @@ class RegistrationActivity : ParentActivity(), View.OnClickListener{
         try {
             if (Build.VERSION.SDK_INT >= 28) {
                 val attributes = window.attributes
-                attributes.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+                attributes.layoutInDisplayCutoutMode =
+                    WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
                 window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
                 window.attributes = attributes
             } else {
                 window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN or WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
             }
-            window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
+            window.decorView.systemUiVisibility =
+                (View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
 
         } catch (e: java.lang.Exception) {
             e.printStackTrace()
         }
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_registration)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_registration)
         activity = this@RegistrationActivity
         initViews()
     }
@@ -51,14 +53,36 @@ class RegistrationActivity : ParentActivity(), View.OnClickListener{
     private fun initViews() {
         appPreference = AppPreference(activity)
         // Set the initial input type to 'textPassword' to hide the password
-        binding.edtPassword.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+        binding.edtPassword.inputType =
+            InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
         isVisibility = true
-        binding.ivVisibility.setImageDrawable(ContextCompat.getDrawable(activity,R.drawable.ic_round_visibility))
-        binding.edtConfirmPassword.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+        binding.ivVisibility.setImageDrawable(
+            ContextCompat.getDrawable(
+                activity,
+                R.drawable.ic_round_visibility
+            )
+        )
+        binding.edtConfirmPassword.inputType =
+            InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
         isConfirmVisibility = true
-        binding.ivConfirmVisibility.setImageDrawable(ContextCompat.getDrawable(activity,R.drawable.ic_round_visibility))
+        binding.ivConfirmVisibility.setImageDrawable(
+            ContextCompat.getDrawable(
+                activity,
+                R.drawable.ic_round_visibility
+            )
+        )
 
-        val string = activity.getString(R.string.term_condition, activity.getString(R.string.green_color_create, activity.getString(R.string.term_of_service)),activity.getString(R.string.green_color_create, activity.getString(R.string.privacy_policy)))
+        val string = activity.getString(
+            R.string.term_condition,
+            activity.getString(
+                R.string.green_color_create,
+                activity.getString(R.string.term_of_service)
+            ),
+            activity.getString(
+                R.string.green_color_create,
+                activity.getString(R.string.privacy_policy)
+            )
+        )
         binding.tvTermCondition.text = HtmlCompat.fromHtml(string, HtmlCompat.FROM_HTML_MODE_LEGACY)
 
 
@@ -73,52 +97,52 @@ class RegistrationActivity : ParentActivity(), View.OnClickListener{
         edtEmail: String,
         edtPassword: String,
         edtConfirmPassword: String
-    ):Boolean{
-        if (edtUsername == ""){
+    ): Boolean {
+        if (edtUsername == "") {
             binding.edtUsername.error = activity.getString(R.string.please_enter_username)
             return false
         }
 
-        if (edtEmail == ""){
+        if (edtEmail == "") {
             binding.edtEmail.error = activity.getString(R.string.please_enter_email)
             return false
         }
 
-        if (edtPassword == ""){
-            binding.edtPassword.error = activity.getString(R.string.please_enter_password)
+        if (edtPassword == "") {
+            Utils().showToast(activity, activity.getString(R.string.please_enter_password))
             return false
         }
 
-        if (edtConfirmPassword == ""){
-            binding.edtConfirmPassword.error = activity.getString(R.string.please_enter_username)
+        if (edtConfirmPassword == "") {
+            Utils().showToast(activity, activity.getString(R.string.please_enter_confirm_password))
             return false
         }
 
-        if (edtPassword != edtConfirmPassword){
+        if (edtPassword != edtConfirmPassword) {
             Utils().showToast(activity, activity.getString(R.string.confirm_password_is_not_match))
             return false
         }
 
-        if (!Patterns.EMAIL_ADDRESS.matcher(edtEmail).matches()){
+        if (!Patterns.EMAIL_ADDRESS.matcher(edtEmail).matches()) {
             binding.edtEmail.error = activity.getString(R.string.email_is_invalid)
             return false
         }
 
         val passwordLength = 8
-        if (edtPassword.length != passwordLength){
+        if (edtPassword.length != passwordLength) {
             binding.edtPassword.error = activity.getString(R.string.password_length_invalid)
             return false
         }
 
-        if (edtConfirmPassword.length != passwordLength){
-            binding.edtConfirmPassword.error = activity.getString(R.string.password_length_invalid)
+        if (edtConfirmPassword.length != passwordLength) {
+            Utils().showToast(activity, activity.getString(R.string.password_length_invalid))
             return false
         }
         return true
     }
 
     override fun onClick(v: View?) {
-        when(v?.id){
+        when (v?.id) {
             R.id.btnNext -> {
                 val edtUsername = binding.edtUsername.text.toString()
                 val edtEmail = binding.edtEmail.text.toString()
@@ -128,24 +152,39 @@ class RegistrationActivity : ParentActivity(), View.OnClickListener{
                 val isValidate = validated(edtUsername, edtEmail, edtPassword, edtConfirmPassword)
                 if (!isValidate) return
 
-                appPreference.setPreference(AppPersistence.keys.USERNAME,edtUsername)
-                appPreference.setPreference(AppPersistence.keys.EMAIL,edtEmail)
-                appPreference.setPreference(AppPersistence.keys.PASSWORD,edtPassword)
-                appPreference.setPreference(AppPersistence.keys.CONFIRM_PASSWORD,edtConfirmPassword)
+                appPreference.setPreference(AppPersistence.keys.USERNAME, edtUsername)
+                appPreference.setPreference(AppPersistence.keys.EMAIL, edtEmail)
+                appPreference.setPreference(AppPersistence.keys.PASSWORD, edtPassword)
+                appPreference.setPreference(
+                    AppPersistence.keys.CONFIRM_PASSWORD,
+                    edtConfirmPassword
+                )
 
-                startActivity(Intent(activity,PaymentInfoActivity::class.java))
+                startActivity(Intent(activity, PaymentInfoActivity::class.java))
             }
 
-            R.id.ivVisibility-> {
+            R.id.ivVisibility -> {
                 isVisibility = if (isVisibility) {
                     // If checked, show the password
-                    binding.edtPassword.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
-                    binding.ivVisibility.setImageDrawable(ContextCompat.getDrawable(activity,R.drawable.ic_round_visibility_off))
+                    binding.edtPassword.inputType =
+                        InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+                    binding.ivVisibility.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            activity,
+                            R.drawable.ic_round_visibility_off
+                        )
+                    )
                     false
                 } else {
                     // If unchecked, hide the password
-                    binding.edtPassword.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-                    binding.ivVisibility.setImageDrawable(ContextCompat.getDrawable(activity,R.drawable.ic_round_visibility))
+                    binding.edtPassword.inputType =
+                        InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                    binding.ivVisibility.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            activity,
+                            R.drawable.ic_round_visibility
+                        )
+                    )
                     true
                 }
 
@@ -153,16 +192,28 @@ class RegistrationActivity : ParentActivity(), View.OnClickListener{
                 binding.edtPassword.setSelection(binding.edtPassword.text!!.length)
             }
 
-            R.id.ivConfirmVisibility-> {
+            R.id.ivConfirmVisibility -> {
                 isConfirmVisibility = if (isConfirmVisibility) {
                     // If checked, show the password
-                    binding.edtConfirmPassword.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
-                    binding.ivConfirmVisibility.setImageDrawable(ContextCompat.getDrawable(activity,R.drawable.ic_round_visibility_off))
+                    binding.edtConfirmPassword.inputType =
+                        InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+                    binding.ivConfirmVisibility.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            activity,
+                            R.drawable.ic_round_visibility_off
+                        )
+                    )
                     false
                 } else {
                     // If unchecked, hide the password
-                    binding.edtConfirmPassword.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-                    binding.ivConfirmVisibility.setImageDrawable(ContextCompat.getDrawable(activity,R.drawable.ic_round_visibility))
+                    binding.edtConfirmPassword.inputType =
+                        InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                    binding.ivConfirmVisibility.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            activity,
+                            R.drawable.ic_round_visibility
+                        )
+                    )
                     true
                 }
 
@@ -170,7 +221,7 @@ class RegistrationActivity : ParentActivity(), View.OnClickListener{
                 binding.edtConfirmPassword.setSelection(binding.edtConfirmPassword.text!!.length)
             }
 
-            R.id.tvLogin-> onBackPressedDispatcher.onBackPressed()
+            R.id.tvLogin -> onBackPressedDispatcher.onBackPressed()
         }
     }
 }

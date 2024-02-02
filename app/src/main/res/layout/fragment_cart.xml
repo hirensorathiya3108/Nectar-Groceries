@@ -17,11 +17,11 @@
             android:layout_height="match_parent">
 
             <androidx.core.widget.NestedScrollView
-                android:id="@+id/nsExclusiveOffer"
+                android:id="@+id/nsOrderData"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:fillViewport="true"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/llOrderDetailsContent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -98,10 +98,12 @@
             </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/llOrderDetailsContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/_10sdp"
                 android:background="@drawable/top_corener_round"
+                app:layout_constraintTop_toBottomOf="@+id/nsOrderData"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -144,7 +146,7 @@
 
                 <com.nectar.groceries.nectargroceries.view.SimpleButton
                     android:id="@+id/orderBtn"
-                    android:layout_width="@dimen/_100sdp"
+                    android:layout_width="@dimen/_120sdp"
                     android:layout_height="@dimen/_35sdp"
                     android:background="@drawable/start_btn_bg"
                     android:fontFamily="@font/pangram_bold"
@@ -153,11 +155,11 @@
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:padding="@dimen/_6sdp"
                     android:textAlignment="center"
-                    android:text="@string/get_started"
+                    android:text="@string/confirm_order"
                     android:textAllCaps="false"
                     android:textColor="#FFFFFF"
                     android:textDirection="ltr"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/_12ssp"
                     android:textStyle="bold"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"

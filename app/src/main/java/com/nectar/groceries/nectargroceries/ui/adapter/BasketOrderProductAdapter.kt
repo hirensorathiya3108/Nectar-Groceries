@@ -88,7 +88,7 @@ class BasketOrderProductAdapter(
 
         private fun extractNumericPrice(productPrice: String): Double? {
             // Define a regex pattern to find the numeric part after the "$" symbol
-            val replacePrice = productPrice.replace("$","")
+            val replacePrice = productPrice.replace("£","")
 
             return replacePrice.toDouble()
         }
