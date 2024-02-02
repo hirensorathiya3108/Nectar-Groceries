@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.nectar.groceries.nectargroceries.R
 import com.nectar.groceries.nectargroceries.data.model.user.ProfileData
 import com.nectar.groceries.nectargroceries.data.preference.AppPersistence
@@ -50,7 +51,7 @@ class AccountFragment : ParentFragment(),View.OnClickListener {
         displayData()
         binding.btnLoginIn.setOnClickListener(this)
         binding.btnLogOut.setOnClickListener(this)
-        binding.btnLoginIn.setOnClickListener(this)
+        binding.btnEdiProfile.setOnClickListener(this)
     }
 
     private fun displayData() {
@@ -79,8 +80,10 @@ class AccountFragment : ParentFragment(),View.OnClickListener {
             R.id.btnLoginIn -> {
                 startActivity(Intent(activity, LoginActivity::class.java))
             }
-            R.id.btnLogOut -> startActivity(Intent(activity, EditProfileActivity::class.java))
+            R.id.btnEdiProfile -> startActivity(Intent(activity, EditProfileActivity::class.java))
             R.id.btnLogOut -> {
+                val auth = FirebaseAuth.getInstance()
+                auth.signOut()
                 appPreference.setPreference(AppPersistence.keys.IS_LOGIN, false)
                 appPreference.setPreference(AppPersistence.keys.IS_FILE_ADDRESS_INFO, false)
                 binding.clUserContent.beGone()

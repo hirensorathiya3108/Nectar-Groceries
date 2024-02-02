@@ -33,6 +33,7 @@ class AddressInformationDialog {
     private lateinit var mDialog: BottomSheetDialog
     private lateinit var appPreference: AppPreference
     fun showDialog(activity: Activity) {
+        Log.e( "showDialog: ","add => address" )
         mActivity = activity
         appPreference = AppPreference(mActivity)
         mDialog = BottomSheetDialog(activity, R.style.SheetDialog)
@@ -47,7 +48,6 @@ class AddressInformationDialog {
         mDialog.setContentView(binding.root)
         binding.continueBtn.setOnClickListener {
             sendAddressData()
-            mDialog.dismiss()
         }
         mDialog.show()
         mDialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
@@ -127,6 +127,7 @@ class AddressInformationDialog {
                     appPreference.setPreference(AppPersistence.keys.IS_LOGIN,true)
                     appPreference.setPreference(AppPersistence.keys.IS_FILE_ADDRESS_INFO,true)
                     changeInProgress(false)
+                    mDialog.dismiss()
                     Utils().showToast(mActivity, "User info get successfully")
                 } else {
                     changeInProgress(false)

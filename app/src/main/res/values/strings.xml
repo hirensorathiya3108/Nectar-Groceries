@@ -76,6 +76,7 @@
     <string name="total_order">Total Order:%s</string>
     <string name="product_add_in_basket">Product Add in Basket</string>
     <string name="product_add_failed_in_basket">Product Adding failed in Basket</string>
+    <string name="please_add_order_in_basket">Please add order in basket</string>
 
     <!--    account screen-->
     <string name="edit_profile">Edit Profile</string>

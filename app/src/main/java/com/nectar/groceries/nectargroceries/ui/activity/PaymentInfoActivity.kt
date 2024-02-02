@@ -150,7 +150,7 @@ class PaymentInfoActivity : ParentActivity(), View.OnClickListener {
         )
         val addressData = AddressData()
         val profileData = ProfileData(username!!, email!!, password, payment_info = paymentInfo,addressData)
-        val documentReference = FirebaseDB().getCollectionReferenceForUser().document()
+        val documentReference = FirebaseDB().getCollectionReferenceForUser().document("data")
         documentReference.set(profileData).addOnCompleteListener(object : OnCompleteListener<Void> {
             override fun onComplete(task: Task<Void>) {
                 changeInProgress(false)
@@ -166,7 +166,7 @@ class PaymentInfoActivity : ParentActivity(), View.OnClickListener {
     }
 
     private fun getUserData() {
-        val documentReference = FirebaseDB().getCollectionReferenceForUser().document()
+        val documentReference = FirebaseDB().getCollectionReferenceForUser().document("data")
         documentReference.addSnapshotListener { value, error ->
             if (error != null) {
                 Utils().showToast(activity,"Error fetching document: $error")

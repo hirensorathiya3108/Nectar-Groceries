@@ -109,7 +109,7 @@ class LoginActivity : ParentActivity(), View.OnClickListener {
 
     private fun getUserData() {
         val documentReference =
-            FirebaseDB().getCollectionReferenceForUser().document("awmYixNTNRnSlgBReRLg")
+            FirebaseDB().getCollectionReferenceForUser().document("data")
         documentReference.addSnapshotListener { value, error ->
             if (error != null) {
                 Utils().showToast(activity,"Error fetching document: $error")
@@ -125,6 +125,7 @@ class LoginActivity : ParentActivity(), View.OnClickListener {
                         json
                     )
                     appPreference.setPreference(AppPersistence.keys.USER_INFO_DATA,json)
+                    if(profileData.address_info.aparment_name.isNotEmpty()) appPreference.setPreference(AppPersistence.keys.IS_FILE_ADDRESS_INFO,true)
                     appPreference.setPreference(AppPersistence.keys.IS_LOGIN,true)
                     changeInProgress(false)
                     Utils().showToast(activity, "User info get successfully")

@@ -21,6 +21,7 @@ import com.nectar.groceries.nectargroceries.extensions.beGone
 import com.nectar.groceries.nectargroceries.extensions.beVisible
 import com.nectar.groceries.nectargroceries.ui.activity.LoginActivity
 import com.nectar.groceries.nectargroceries.ui.adapter.BasketOrderProductAdapter
+import com.nectar.groceries.nectargroceries.utils.Utils
 import com.nectar.groceries.nectargroceries.view.dialog.AddressInformationDialog
 import com.nectar.groceries.nectargroceries.view.dialog.OrderConfirmDialog
 import needle.Needle
@@ -61,6 +62,7 @@ class CartFragment : ParentFragment(), View.OnClickListener {
     private fun initViews() {
         appPreference = AppPreference(activity)
         orderProductList = ArrayList()
+        binding.orderBtn.setOnClickListener(this)
     }
 
     private fun getOrderData() {
@@ -232,8 +234,14 @@ class CartFragment : ParentFragment(), View.OnClickListener {
                     startActivity(Intent(activity, LoginActivity::class.java))
                 } else {
                     if(!isFileAddress){
+                        Log.e( "onClick: ","add => address" )
                         AddressInformationDialog().showDialog(activity)
-                    } else OrderConfirmDialog().showDialog(activity)
+                    } else {
+                        if (orderProductList.size != 0){
+                            OrderConfirmDialog().showDialog(activity)
+                        } else Utils().showToast(activity,
+                            getString(R.string.please_add_order_in_basket))
+                    }
                 }
             }
         }
